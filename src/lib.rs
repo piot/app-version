@@ -52,7 +52,7 @@ impl Version {
     ///
     /// # Returns
     /// A `Version` instance.
-    pub fn new(major: u16, minor: u16, patch: u16) -> Self {
+    pub const fn new(major: u16, minor: u16, patch: u16) -> Self {
         Self {
             major,
             minor,
@@ -61,17 +61,17 @@ impl Version {
     }
 
     /// Returns the major version number.
-    pub fn major(&self) -> u16 {
+    pub const fn major(&self) -> u16 {
         self.major
     }
 
     /// Returns the minor version number.
-    pub fn minor(&self) -> u16 {
+    pub const fn minor(&self) -> u16 {
         self.minor
     }
 
     /// Returns the patch version number.
-    pub fn patch(&self) -> u16 {
+    pub const fn patch(&self) -> u16 {
         self.patch
     }
 
@@ -91,6 +91,17 @@ impl Version {
         self.major += 1;
         self.minor = 0;
         self.patch = 0;
+    }
+
+    /// Checks if the current version is compatible with another version.
+    ///
+    /// # Parameters
+    /// - `other`: The other version to check compatibility against.
+    ///
+    /// # Returns
+    /// `true` if the versions are compatible, otherwise `false`.
+    pub fn is_compatible(&self, other: &Self) -> bool {
+        self.major == other.major
     }
 }
 
